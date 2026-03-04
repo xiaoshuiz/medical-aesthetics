@@ -80,11 +80,11 @@
 
 **Independent Test**: Log in, open profile, edit fields and save; reopen profile and confirm data matches.
 
-- [ ] T025 [P] [US2] Add profile page in `src/pages/Profile.tsx` with route path `/profile`
-- [ ] T026 [US2] Implement mock profile service in `src/services/mock/profile.ts` (getProfile, updateProfile) aligned with contracts `ProfileService`
-- [ ] T027 [US2] Implement profile view: fetch and display display name, contact, avatar in `src/pages/Profile.tsx`
-- [ ] T028 [US2] Implement profile edit form with validation (required fields per FR-008) and save in `src/pages/Profile.tsx`; show success or validation errors
-- [ ] T029 [US2] Wire profile API facade to mock in `src/services/client.ts` (or profile module) so profile page uses mock data
+- [x] T025 [P] [US2] Add profile page in `src/pages/Profile.tsx` with route path `/profile`
+- [x] T026 [US2] Implement mock profile service in `src/services/mock/profile.ts` (getProfile, updateProfile) aligned with contracts `ProfileService`
+- [x] T027 [US2] Implement profile view: fetch and display display name, contact, avatar in `src/pages/Profile.tsx`
+- [x] T028 [US2] Implement profile edit form with validation (required fields per FR-008) and save in `src/pages/Profile.tsx`; show success or validation errors
+- [x] T029 [US2] Wire profile API facade to mock in `src/services/client.ts` (or profile module) so profile page uses mock data
 
 **Checkpoint**: User Story 2 is independently testable (view and edit profile with mock).
 
