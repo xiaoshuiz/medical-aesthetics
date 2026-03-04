@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.local
+
+# Logs and debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Test and coverage
+coverage/
+
+# Optional
+*.tsbuildinfo
+
+# Cursor / IDE
+.cursor/
+
+# pnpm
+.pnpm-store/
