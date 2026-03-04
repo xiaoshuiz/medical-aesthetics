@@ -22,17 +22,30 @@ export async function getMemberStatus(): Promise<{
 
 export async function getBalance(): Promise<number> {
   await delay(100);
-  return 0;
+  const { getStoredBalance } = await import('./store');
+  return getStoredBalance();
 }
 
-export async function topUpBalance(_amount_cents: number): Promise<{
+export async function topUpBalance(amount_cents: number): Promise<{
   payment: { id: string };
   new_balance_cents: number;
 }> {
   await delay(300);
+  const { getStoredBalance, setStoredBalance, addPayment } = await import('./store');
+  const current = getStoredBalance();
+  const newBalance = current + amount_cents;
+  setStoredBalance(newBalance);
+  const payId = 'topup-' + Date.now();
+  addPayment({
+    id: payId,
+    amount_cents,
+    status: 'success',
+    created_at: new Date().toISOString(),
+    description: 'Balance top-up',
+  });
   return {
-    payment: { id: 'topup-' + Date.now() },
-    new_balance_cents: _amount_cents,
+    payment: { id: payId },
+    new_balance_cents: newBalance,
   };
 }
 

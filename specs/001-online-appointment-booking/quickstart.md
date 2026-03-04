@@ -18,11 +18,11 @@ pnpm install
 
 ## Environment
 
-Create a `.env` or `.env.local` in the project root (or set in CI):
+**Mock mode**: The app uses mock services by default; no backend or env vars are required. Run `pnpm dev` and `pnpm build` without configuration.
 
-- **`VITE_GRPC_WEB_BASE_URL`** (or equivalent): Base URL for the gRPC-Web endpoint (e.g. `https://api.example.com` or `http://localhost:8080`). The exact variable name may depend on the Rsbuild/Vite config used for env.
+**gRPC mode** (when backend is ready): Create a `.env` or `.env.local`:
 
-Adjust variable names to match the actual build (Rsbuild typically uses `VITE_*` for client-side env).
+- **`VITE_GRPC_WEB_BASE_URL`** (or equivalent): Base URL for the gRPC-Web endpoint (e.g. `https://api.example.com` or `http://localhost:8080`).
 
 ## Build
 

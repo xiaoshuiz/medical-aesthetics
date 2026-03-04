@@ -6,6 +6,8 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Profile } from './pages/Profile';
 import { Booking } from './pages/Booking';
+import { BookingConfirm } from './pages/BookingConfirm';
+import { BookingSuccess } from './pages/BookingSuccess';
 import { History } from './pages/History';
 import { Membership } from './pages/Membership';
 
@@ -30,6 +32,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Booking />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'booking/confirm',
+        element: (
+          <ProtectedRoute>
+            <BookingConfirm />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'booking/success',
+        element: (
+          <ProtectedRoute>
+            <BookingSuccess />
           </ProtectedRoute>
         ),
       },

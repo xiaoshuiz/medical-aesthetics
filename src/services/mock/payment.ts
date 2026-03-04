@@ -7,13 +7,19 @@ export interface Payment {
   appointment_id?: string;
 }
 
-export async function listPayments(_params?: {
+export async function listPayments(params?: {
   page?: number;
   page_size?: number;
 }): Promise<{ payments: Payment[]; total: number }> {
-  void _params;
   await delay(100);
-  return { payments: [], total: 0 };
+  const { getStoredPayments } = await import('./store');
+  const list = getStoredPayments();
+  const total = list.length;
+  const page = params?.page ?? 1;
+  const pageSize = params?.page_size ?? 20;
+  const start = (page - 1) * pageSize;
+  const payments = list.slice(start, start + pageSize);
+  return { payments, total };
 }
 
 function delay(ms: number): Promise<void> {
