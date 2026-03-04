@@ -41,6 +41,7 @@ export async function listAppointments(_params?: {
   page?: number;
   page_size?: number;
 }): Promise<{ appointments: Appointment[]; total: number }> {
+  void _params;
   await delay(100);
   return { appointments: [], total: 0 };
 }
