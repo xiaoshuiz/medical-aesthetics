@@ -96,13 +96,13 @@
 
 **Independent Test**: Log in, select procedure → date/time → doctor, review summary, complete payment; confirm appointment appears in list.
 
-- [ ] T030 [P] [US3] Add booking flow pages: `src/pages/Booking.tsx` (procedure/slot/doctor steps) and `src/pages/BookingConfirm.tsx` (summary and payment)
-- [ ] T031 [US3] Implement mock catalog service in `src/services/mock/catalog.ts` (listProcedures, listDoctors, getAvailableSlots) per `contracts/api.proto` CatalogService
-- [ ] T032 [US3] Implement mock appointment and payment in `src/services/mock/appointment.ts` and `src/services/mock/payment.ts` (createAppointment with payment intent, listPayments)
-- [ ] T033 [US3] Implement procedure and slot selection UI in `src/pages/Booking.tsx` using TanStack Query and mock catalog; show only available slots
-- [ ] T034 [US3] Implement doctor selection and booking summary (procedure, date, time, doctor, price) in `src/pages/Booking.tsx` or `src/pages/BookingConfirm.tsx`
-- [ ] T035 [US3] Implement payment step (mock: confirm button that calls createAppointment + payment); show success and confirmation number in `src/pages/BookingConfirm.tsx`
-- [ ] T036 [US3] Wire booking and payment API facade to mocks in `src/services/client.ts` so booking flow runs end-to-end with mock
+- [x] T030 [P] [US3] Add booking flow pages: `src/pages/Booking.tsx` (procedure/slot/doctor steps) and `src/pages/BookingConfirm.tsx` (summary and payment)
+- [x] T031 [US3] Implement mock catalog service in `src/services/mock/catalog.ts` (listProcedures, listDoctors, getAvailableSlots) per `contracts/api.proto` CatalogService
+- [x] T032 [US3] Implement mock appointment and payment in `src/services/mock/appointment.ts` and `src/services/mock/payment.ts` (createAppointment with payment intent, listPayments)
+- [x] T033 [US3] Implement procedure and slot selection UI in `src/pages/Booking.tsx` using TanStack Query and mock catalog; show only available slots
+- [x] T034 [US3] Implement doctor selection and booking summary (procedure, date, time, doctor, price) in `src/pages/Booking.tsx` or `src/pages/BookingConfirm.tsx`
+- [x] T035 [US3] Implement payment step (mock: confirm button that calls createAppointment + payment); show success and confirmation number in `src/pages/BookingConfirm.tsx`
+- [x] T036 [US3] Wire booking and payment API facade to mocks in `src/services/client.ts` so booking flow runs end-to-end with mock
 
 **Checkpoint**: User Story 3 is independently testable (full booking + payment with mock).
 
@@ -114,10 +114,10 @@
 
 **Independent Test**: Log in, open appointment history and payment history; create one appointment, then confirm it appears in both lists.
 
-- [ ] T037 [P] [US4] Add history page in `src/pages/History.tsx` with route path `/history` and tabs or sections for appointments and payments
-- [ ] T038 [US4] Implement list appointments in `src/pages/History.tsx` using mock appointment service (listAppointments); show procedure, date, time, doctor, status
-- [ ] T039 [US4] Implement list payments in `src/pages/History.tsx` using mock payment service (listPayments); show date, amount, description; add pagination or “recent N” per spec
-- [ ] T040 [US4] Add empty state for no appointments and no payments in `src/pages/History.tsx` with clear message (not error)
+- [x] T037 [P] [US4] Add history page in `src/pages/History.tsx` with route path `/history` and tabs or sections for appointments and payments
+- [x] T038 [US4] Implement list appointments in `src/pages/History.tsx` using mock appointment service (listAppointments); show procedure, date, time, doctor, status
+- [x] T039 [US4] Implement list payments in `src/pages/History.tsx` using mock payment service (listPayments); show date, amount, description; add pagination or “recent N” per spec
+- [x] T040 [US4] Add empty state for no appointments and no payments in `src/pages/History.tsx` with clear message (not error)
 
 **Checkpoint**: User Story 4 is independently testable (history lists with mock).
 
@@ -129,11 +129,11 @@
 
 **Independent Test**: Log in, open membership section; see status and balance; book with member price or balance and confirm correct amount.
 
-- [ ] T041 [P] [US5] Add membership/account page in `src/pages/Membership.tsx` with route path `/membership`
-- [ ] T042 [US5] Implement mock membership service in `src/services/mock/membership.ts` (getMemberStatus, getBalance, topUpBalance) per contracts
-- [ ] T043 [US5] Implement membership view: display tier name and benefits list in `src/pages/Membership.tsx`
-- [ ] T044 [US5] Implement balance display and top-up entry (mock) in `src/pages/Membership.tsx`; after “top-up” show updated balance
-- [ ] T045 [US5] Apply member price and balance option in booking flow: in `src/pages/BookingConfirm.tsx` show member price when applicable and allow “pay with balance” (mock deduction)
+- [x] T041 [P] [US5] Add membership/account page in `src/pages/Membership.tsx` with route path `/membership`
+- [x] T042 [US5] Implement mock membership service in `src/services/mock/membership.ts` (getMemberStatus, getBalance, topUpBalance) per contracts
+- [x] T043 [US5] Implement membership view: display tier name and benefits list in `src/pages/Membership.tsx`
+- [x] T044 [US5] Implement balance display and top-up entry (mock) in `src/pages/Membership.tsx`; after “top-up” show updated balance
+- [x] T045 [US5] Apply member price and balance option in booking flow: in `src/pages/BookingConfirm.tsx` show member price when applicable and allow “pay with balance” (mock deduction)
 
 **Checkpoint**: User Story 5 is independently testable (membership and balance with mock).
 
@@ -143,10 +143,10 @@
 
 **Purpose**: Consistency, validation, and documentation.
 
-- [ ] T046 [P] Ensure consistent error and success feedback (toast or inline) across login, profile, booking, payment, history, membership per FR-020
-- [ ] T047 [P] Add responsive and accessibility basics: keyboard navigation and viewport behavior for main flows per constitution III
-- [ ] T048 Run full flow per `specs/001-online-appointment-booking/quickstart.md`: `pnpm install`, `pnpm build`, `pnpm dev`; confirm no console or page errors; document any env or steps in quickstart
-- [ ] T049 Remove or replace any temporary placeholder copy with consistent terminology for medical aesthetics context
+- [x] T046 [P] Ensure consistent error and success feedback (toast or inline) across login, profile, booking, payment, history, membership per FR-020
+- [x] T047 [P] Add responsive and accessibility basics: keyboard navigation and viewport behavior for main flows per constitution III
+- [x] T048 Run full flow per `specs/001-online-appointment-booking/quickstart.md`: `pnpm install`, `pnpm build`, `pnpm dev`; confirm no console or page errors; document any env or steps in quickstart
+- [x] T049 Remove or replace any temporary placeholder copy with consistent terminology for medical aesthetics context
 
 ---
 
