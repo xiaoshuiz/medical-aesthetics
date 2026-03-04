@@ -1,0 +1,257 @@
+syntax = "proto3";
+
+package medical_aesthetics.booking.v1;
+
+option js_package = "medical_aesthetics.booking.v1";
+
+// ---------------------------------------------------------------------------
+// Auth (identity module)
+// ---------------------------------------------------------------------------
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse);
+}
+
+message RegisterRequest {
+  string identifier = 1;  // e.g. email or mobile
+  string password = 2;
+  string display_name = 3;
+}
+
+message RegisterResponse {
+  string session_token = 1;
+  UserSummary user = 2;
+}
+
+message LoginRequest {
+  string identifier = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string session_token = 1;
+  UserSummary user = 2;
+}
+
+message LogoutRequest {}
+
+message LogoutResponse {}
+
+message GetSessionRequest {}
+
+message GetSessionResponse {
+  UserSummary user = 1;
+}
+
+message UserSummary {
+  string user_id = 1;
+  string display_name = 2;
+  string identifier = 3;
+}
+
+// ---------------------------------------------------------------------------
+// Profile
+// ---------------------------------------------------------------------------
+
+service ProfileService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+}
+
+message GetProfileRequest {}
+
+message GetProfileResponse {
+  Profile profile = 1;
+}
+
+message UpdateProfileRequest {
+  string display_name = 1;
+  string contact = 2;
+  string avatar_url = 3;  // optional
+}
+
+message UpdateProfileResponse {
+  Profile profile = 1;
+}
+
+message Profile {
+  string user_id = 1;
+  string display_name = 2;
+  string contact = 3;
+  string avatar_url = 4;
+}
+
+// ---------------------------------------------------------------------------
+// Procedures and doctors (booking catalog)
+// ---------------------------------------------------------------------------
+
+service CatalogService {
+  rpc ListProcedures(ListProceduresRequest) returns (ListProceduresResponse);
+  rpc ListDoctors(ListDoctorsRequest) returns (ListDoctorsResponse);
+  rpc GetAvailableSlots(GetAvailableSlotsRequest) returns (GetAvailableSlotsResponse);
+}
+
+message ListProceduresRequest {}
+
+message ListProceduresResponse {
+  repeated Procedure procedures = 1;
+}
+
+message ListDoctorsRequest {}
+
+message ListDoctorsResponse {
+  repeated Doctor doctors = 1;
+}
+
+message GetAvailableSlotsRequest {
+  string procedure_id = 1;
+  string date = 2;  // ISO date; optional doctor_id to filter
+  string doctor_id = 3;
+}
+
+message GetAvailableSlotsResponse {
+  repeated TimeSlot slots = 1;
+}
+
+message Procedure {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  int64 base_price_cents = 4;
+}
+
+message Doctor {
+  string id = 1;
+  string display_name = 2;
+}
+
+message TimeSlot {
+  string id = 1;
+  string date = 2;
+  string start_time = 3;
+  string end_time = 4;
+  string doctor_id = 5;
+}
+
+// ---------------------------------------------------------------------------
+// Appointments (booking)
+// ---------------------------------------------------------------------------
+
+service AppointmentService {
+  rpc CreateAppointment(CreateAppointmentRequest) returns (CreateAppointmentResponse);
+  rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse);
+}
+
+message CreateAppointmentRequest {
+  string procedure_id = 1;
+  string slot_id = 2;
+  string doctor_id = 3;
+  PaymentIntent payment = 4;  // balance and/or external payment
+}
+
+message CreateAppointmentResponse {
+  Appointment appointment = 1;
+  Payment payment = 2;  // when payment succeeded
+}
+
+message ListAppointmentsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string status_filter = 3;  // e.g. "upcoming", "past", or empty for all
+}
+
+message ListAppointmentsResponse {
+  repeated Appointment appointments = 1;
+  int32 total = 2;
+}
+
+message Appointment {
+  string id = 1;
+  string procedure_id = 2;
+  string procedure_name = 3;
+  string date = 4;
+  string start_time = 5;
+  string doctor_id = 6;
+  string doctor_name = 7;
+  string status = 8;  // upcoming, completed, cancelled
+  string payment_id = 9;
+}
+
+message PaymentIntent {
+  bool use_balance = 1;
+  int64 external_amount_cents = 2;  // when not fully covered by balance
+}
+
+// ---------------------------------------------------------------------------
+// Payment
+// ---------------------------------------------------------------------------
+
+service PaymentService {
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
+  rpc TopUpBalance(TopUpBalanceRequest) returns (TopUpBalanceResponse);
+}
+
+message ListPaymentsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListPaymentsResponse {
+  repeated Payment payments = 1;
+  int32 total = 2;
+}
+
+message TopUpBalanceRequest {
+  int64 amount_cents = 1;
+  string external_payment_id = 2;  // from payment provider
+}
+
+message TopUpBalanceResponse {
+  Payment payment = 1;
+  int64 new_balance_cents = 2;
+}
+
+message Payment {
+  string id = 1;
+  int64 amount_cents = 2;
+  string status = 3;  // success, failed
+  string created_at = 4;
+  string description = 5;  // e.g. "Appointment #x", "Balance top-up"
+  string appointment_id = 6;
+}
+
+// ---------------------------------------------------------------------------
+// Membership and balance
+// ---------------------------------------------------------------------------
+
+service MembershipService {
+  rpc GetMemberStatus(GetMemberStatusRequest) returns (GetMemberStatusResponse);
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
+}
+
+message GetMemberStatusRequest {}
+
+message GetMemberStatusResponse {
+  MemberStatus status = 1;
+  repeated MemberBenefit benefits = 2;
+}
+
+message GetBalanceRequest {}
+
+message GetBalanceResponse {
+  int64 balance_cents = 1;
+}
+
+message MemberStatus {
+  string tier_id = 1;
+  string tier_name = 2;
+}
+
+message MemberBenefit {
+  string type = 1;   // e.g. discount_percent, discount_fixed
+  int32 value = 2;   // e.g. 10 for 10%
+  repeated string procedure_ids = 3;  // empty = all
+}
