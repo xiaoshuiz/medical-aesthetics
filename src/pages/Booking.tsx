@@ -79,18 +79,18 @@ export function Booking() {
   const minDate = new Date().toISOString().slice(0, 10);
 
   return (
-    <div className="mx-auto max-w-xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-medium text-gray-800">Book Appointment</h2>
-      <p className="mt-2 text-sm text-gray-600">
+    <div className="mx-auto max-w-xl rounded-card border border-neutral-300 bg-surface-pearl p-6 shadow-mist">
+      <h2 className="text-xl font-medium text-functional-clinical font-serif" style={{ letterSpacing: 'var(--heading-letter-spacing)' }}>Book Appointment</h2>
+      <p className="mt-2 text-sm text-functional-clinical" style={{ letterSpacing: 'var(--body-letter-spacing)', lineHeight: 'var(--body-line-height)' }}>
         Select procedure, date, time, and doctor.
       </p>
 
       {/* Step 1: Procedure */}
       {step === 'procedure' && (
         <div className="mt-6">
-          <h3 className="text-sm font-medium text-gray-700">1. Select procedure</h3>
+          <h3 className="text-sm font-medium text-functional-clinical">1. Select procedure</h3>
           {loadingProcedures ? (
-            <p className="mt-2 text-sm text-gray-600">Loading procedures…</p>
+            <p className="mt-2 text-sm text-functional-clinical">Loading procedures…</p>
           ) : (
             <ul className="mt-2 space-y-2">
               {procedures?.map((p) => (
@@ -98,13 +98,13 @@ export function Booking() {
                   <button
                     type="button"
                     onClick={() => handleProcedureSelect(p)}
-                    className="w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-left text-sm hover:bg-gray-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-card border border-neutral-300 bg-surface-pearl px-4 py-3 text-left text-sm hover:bg-neutral-100 focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
                   >
-                    <span className="font-medium">{p.name}</span>
+                    <span className="font-medium text-functional-clinical">{p.name}</span>
                     {p.description && (
-                      <span className="ml-2 text-gray-600">— {p.description}</span>
+                      <span className="ml-2 text-functional-clinical">— {p.description}</span>
                     )}
-                    <span className="block mt-1 text-gray-500">
+                    <span className="block mt-1 text-neutral-500">
                       ¥{(p.base_price_cents / 100).toFixed(2)}
                     </span>
                   </button>
@@ -119,13 +119,13 @@ export function Booking() {
       {step === 'slot' && selectedProcedure && (
         <div className="mt-6 space-y-4">
           <div>
-            <h3 className="text-sm font-medium text-gray-700">2. Select date & time</h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <h3 className="text-sm font-medium text-functional-clinical">2. Select date & time</h3>
+            <p className="mt-1 text-sm text-functional-clinical">
               Selected: {selectedProcedure.name}
             </p>
           </div>
           <div>
-            <label htmlFor="booking-date" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="booking-date" className="block text-sm font-medium text-functional-clinical">
               Date
             </label>
             <input
@@ -134,16 +134,16 @@ export function Booking() {
               value={selectedDate}
               min={minDate}
               onChange={(e) => handleDateChange(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
             />
           </div>
           {selectedDate && (
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-functional-clinical">
                 Available slots
               </label>
               {loadingSlots ? (
-                <p className="mt-2 text-sm text-gray-600">Loading slots…</p>
+                <p className="mt-2 text-sm text-functional-clinical">Loading slots…</p>
               ) : (
                 <ul className="mt-2 space-y-2">
                   {slots?.map((s) => (
@@ -151,14 +151,14 @@ export function Booking() {
                       <button
                         type="button"
                         onClick={() => handleSlotSelect(s)}
-                        className="w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-left text-sm hover:bg-gray-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="w-full rounded-card border border-neutral-300 bg-surface-pearl px-4 py-2 text-left text-sm hover:bg-neutral-100 focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
                       >
                         {s.start_time} – {s.end_time}
                       </button>
                     </li>
                   ))}
                   {slots?.length === 0 && (
-                    <p className="mt-2 text-sm text-gray-600">
+                    <p className="mt-2 text-sm text-functional-clinical">
                       No available slots for this date.
                     </p>
                   )}
@@ -173,13 +173,13 @@ export function Booking() {
       {step === 'doctor' && selectedProcedure && selectedSlot && (
         <div className="mt-6 space-y-4">
           <div>
-            <h3 className="text-sm font-medium text-gray-700">3. Select doctor</h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <h3 className="text-sm font-medium text-functional-clinical">3. Select doctor</h3>
+            <p className="mt-1 text-sm text-functional-clinical">
               {selectedProcedure.name} · {selectedSlot.date} {selectedSlot.start_time}
             </p>
           </div>
           {loadingDoctors ? (
-            <p className="text-sm text-gray-600">Loading doctors…</p>
+            <p className="text-sm text-functional-clinical">Loading doctors…</p>
           ) : (
             <ul className="space-y-2">
               {doctors?.map((d) => (
@@ -187,7 +187,7 @@ export function Booking() {
                   <button
                     type="button"
                     onClick={() => handleDoctorSelect(d)}
-                    className="w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-left text-sm hover:bg-gray-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-card border border-neutral-300 bg-surface-pearl px-4 py-3 text-left text-sm hover:bg-neutral-100 focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
                   >
                     {d.display_name}
                   </button>
@@ -204,8 +204,8 @@ export function Booking() {
         selectedSlot &&
         selectedDoctor && (
           <div className="mt-6 space-y-4">
-            <h3 className="text-sm font-medium text-gray-700">4. Summary</h3>
-            <div className="rounded-md border border-gray-200 bg-gray-50 p-4 text-sm">
+            <h3 className="text-sm font-medium text-functional-clinical">4. Summary</h3>
+            <div className="rounded-card border border-neutral-300 bg-neutral-100 p-4 text-sm">
               <p>
                 <span className="font-medium">Procedure:</span> {selectedProcedure.name}
               </p>
@@ -227,7 +227,7 @@ export function Booking() {
             <button
               type="button"
               onClick={handleConfirm}
-              className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="rounded-pill bg-accent-gold-dark px-4 py-2 text-sm font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-offset-2"
             >
               Continue to payment
             </button>
@@ -239,7 +239,7 @@ export function Booking() {
           <button
             type="button"
             onClick={handleBack}
-            className="text-sm text-gray-600 hover:text-gray-800"
+            className="text-sm text-functional-clinical hover:text-accent-gold-dark"
           >
             ← Back
           </button>

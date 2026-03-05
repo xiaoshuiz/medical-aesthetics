@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component manifest for Medical Aesthetics Design System",
+  "description": "Maps design specs and token groups to React component paths",
+  "type": "object",
+  "required": ["patterns", "tokens"],
+  "properties": {
+    "patterns": {
+      "type": "array",
+      "description": "Design pattern to component path mapping",
+      "items": {
+        "type": "object",
+        "required": ["specId", "componentPath"],
+        "properties": {
+          "specId": { "type": "string", "description": "e.g. TreatmentCard, BeforeAfterSlider, DoctorCard, PriceDisplay, BookingCTA" },
+          "componentPath": { "type": "string", "description": "e.g. src/components/TreatmentCard.tsx" }
+        }
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "description": "Token definition location",
+      "items": {
+        "type": "object",
+        "required": ["tokenId", "definedIn"],
+        "properties": {
+          "tokenId": { "type": "string", "description": "e.g. surface-pearl, accent-gold, status-label" },
+          "definedIn": { "type": "string", "description": "e.g. src/theme/tokens.css or tailwind.config.js" }
+        }
+      }
+    },
+    "unmappedSpecs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Design spec IDs not yet mapped to a component"
+    },
+    "unmappedComponents": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Component paths not yet mapped to a design spec"
+    }
+  }
+}

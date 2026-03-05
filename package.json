@@ -10,7 +10,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src tests --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "manifest:check": "node scripts/check-manifest-unmapped.mjs",
+    "style-audit": "node scripts/style-audit.mjs"
   },
   "engines": {
     "node": ">=18"

@@ -1,0 +1,45 @@
+/**
+ * Medical Aesthetics Design System - Design Tokens
+ * Branch: 002-design-system-tokens
+ * All tokens use kebab-case per spec FR-001.
+ */
+
+:root {
+  /* === Glass & Skin Colors (T004) === */
+  --surface-pearl: #faf9f6;
+  --accent-gold: #c5a059;
+  --accent-gold-dark: #9a7b4a; /* darker variant for 3:1 on surface-pearl (T006) */
+  --functional-clinical: #005a70;
+
+  /* === Nude Palette (T005) === */
+  --neutral-100: #faf8f5;
+  --neutral-200: #f0ebe5;
+  --neutral-300: #e5ddd4;
+  --neutral-400: #d4c9bc;
+  --neutral-500: #b8a898;
+
+  /* === Typography (T007) === */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Serif H1/H2: letter-spacing -0.01em */
+  --heading-letter-spacing: -0.01em;
+  --body-letter-spacing: 0.03em;
+  --body-line-height: 1.6;
+
+  /* status-label: Uppercase, 10px, Bold, 2px letter-spacing */
+  --status-label-font-size: 10px;
+  --status-label-font-weight: 700;
+  --status-label-letter-spacing: 2px;
+  --status-label-text-transform: uppercase;
+
+  /* === Radius & Elevation (T008) === */
+  --radius-card: 24px;
+  --radius-pill: 50px;
+  --shadow-mist: 0 12px 40px rgba(0, 0, 0, 0.04);
+
+  /* === Spacing (T009) === */
+  --grid-unit: 8px;
+  --section-padding: clamp(64px, 10vw, 120px);
+  --special-gap: 48px; /* CTA-to-Image only */
+}

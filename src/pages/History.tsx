@@ -31,20 +31,20 @@ export function History() {
   const payments = paymentsData?.payments ?? [];
 
   return (
-    <div className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-medium text-gray-800">Appointment & Payment History</h2>
-      <p className="mt-2 text-sm text-gray-600">
+    <div className="mx-auto max-w-2xl rounded-card border border-neutral-300 bg-surface-pearl p-6 shadow-mist">
+      <h2 className="text-xl font-medium text-functional-clinical">Appointment & Payment History</h2>
+      <p className="mt-2 text-sm text-functional-clinical">
         View your appointments and payment records.
       </p>
 
-      <div className="mt-6 flex gap-2 border-b border-gray-200">
+      <div className="mt-6 flex gap-2 border-b border-neutral-300">
         <button
           type="button"
           onClick={() => setTab('appointments')}
           className={`border-b-2 px-4 py-2 text-sm font-medium ${
             tab === 'appointments'
-              ? 'border-blue-600 text-blue-600'
-              : 'border-transparent text-gray-600 hover:text-gray-800'
+              ? 'border-accent-gold-dark text-accent-gold-dark'
+              : 'border-transparent text-functional-clinical hover:text-functional-clinical'
           }`}
         >
           Appointments
@@ -54,8 +54,8 @@ export function History() {
           onClick={() => setTab('payments')}
           className={`border-b-2 px-4 py-2 text-sm font-medium ${
             tab === 'payments'
-              ? 'border-blue-600 text-blue-600'
-              : 'border-transparent text-gray-600 hover:text-gray-800'
+              ? 'border-accent-gold-dark text-accent-gold-dark'
+              : 'border-transparent text-functional-clinical hover:text-functional-clinical'
           }`}
         >
           Payments
@@ -70,8 +70,8 @@ export function History() {
               onClick={() => setStatusFilter('')}
               className={`rounded px-3 py-1 text-sm ${
                 statusFilter === ''
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-neutral-200 text-functional-clinical'
+                  : 'bg-neutral-100 text-functional-clinical hover:bg-neutral-200'
               }`}
             >
               All
@@ -81,8 +81,8 @@ export function History() {
               onClick={() => setStatusFilter('upcoming')}
               className={`rounded px-3 py-1 text-sm ${
                 statusFilter === 'upcoming'
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-neutral-200 text-functional-clinical'
+                  : 'bg-neutral-100 text-functional-clinical hover:bg-neutral-200'
               }`}
             >
               Upcoming
@@ -92,19 +92,19 @@ export function History() {
               onClick={() => setStatusFilter('past')}
               className={`rounded px-3 py-1 text-sm ${
                 statusFilter === 'past'
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-neutral-200 text-functional-clinical'
+                  : 'bg-neutral-100 text-functional-clinical hover:bg-neutral-200'
               }`}
             >
               Past
             </button>
           </div>
           {loadingAppointments ? (
-            <p className="text-sm text-gray-600">Loading appointments…</p>
+            <p className="text-sm text-functional-clinical">Loading appointments…</p>
           ) : appointments.length === 0 ? (
-            <div className="rounded-md border border-gray-200 bg-gray-50 p-8 text-center">
-              <p className="text-sm text-gray-600">No appointments yet.</p>
-              <p className="mt-1 text-sm text-gray-500">
+            <div className="rounded-card border border-neutral-300 bg-neutral-100 p-8 text-center">
+              <p className="text-sm text-functional-clinical">No appointments yet.</p>
+              <p className="mt-1 text-sm text-neutral-500">
                 Book an appointment to see your history here.
               </p>
             </div>
@@ -113,13 +113,13 @@ export function History() {
               {appointments.map((apt) => (
                 <li
                   key={apt.id}
-                  className="rounded-md border border-gray-200 bg-white p-4 shadow-sm"
+                  className="rounded-card border border-neutral-300 bg-white p-4 shadow-mist"
                 >
                   <p className="font-medium">{apt.procedure_name}</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-functional-clinical">
                     {apt.date} {apt.start_time} · {apt.doctor_name}
                   </p>
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-neutral-500">
                     Status: {apt.status} · ID: {apt.id}
                   </p>
                 </li>
@@ -132,11 +132,11 @@ export function History() {
       {tab === 'payments' && (
         <div className="mt-4">
           {loadingPayments ? (
-            <p className="text-sm text-gray-600">Loading payments…</p>
+            <p className="text-sm text-functional-clinical">Loading payments…</p>
           ) : payments.length === 0 ? (
-            <div className="rounded-md border border-gray-200 bg-gray-50 p-8 text-center">
-              <p className="text-sm text-gray-600">No payments yet.</p>
-              <p className="mt-1 text-sm text-gray-500">
+            <div className="rounded-card border border-neutral-300 bg-neutral-100 p-8 text-center">
+              <p className="text-sm text-functional-clinical">No payments yet.</p>
+              <p className="mt-1 text-sm text-neutral-500">
                 Your payment history will appear here after bookings or top-ups.
               </p>
             </div>
@@ -145,11 +145,11 @@ export function History() {
               {payments.map((pay) => (
                 <li
                   key={pay.id}
-                  className="rounded-md border border-gray-200 bg-white p-4 shadow-sm"
+                  className="rounded-card border border-neutral-300 bg-white p-4 shadow-mist"
                 >
                   <p className="font-medium">¥{(pay.amount_cents / 100).toFixed(2)}</p>
-                  <p className="text-sm text-gray-600">{pay.description}</p>
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="text-sm text-functional-clinical">{pay.description}</p>
+                  <p className="mt-1 text-xs text-neutral-500">
                     {pay.created_at.slice(0, 10)} · {pay.status}
                   </p>
                 </li>
