@@ -33,5 +33,8 @@ coverage/
 # Cursor / IDE
 .cursor/
 
+# Claude
+.claude/
+
 # pnpm
 .pnpm-store/
