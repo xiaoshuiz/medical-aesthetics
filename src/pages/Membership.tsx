@@ -38,22 +38,22 @@ export function Membership() {
   const benefits = status?.benefits ?? [];
 
   return (
-    <div className="mx-auto max-w-xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-medium text-gray-800">Membership</h2>
-      <p className="mt-2 text-sm text-gray-600">
+    <div className="mx-auto max-w-xl rounded-card border border-neutral-300 bg-surface-pearl p-6 shadow-mist">
+      <h2 className="text-xl font-medium text-functional-clinical">Membership</h2>
+      <p className="mt-2 text-sm text-functional-clinical">
         View your membership tier, benefits, and balance.
       </p>
 
       {isLoading ? (
-        <p className="mt-6 text-sm text-gray-600">Loading…</p>
+        <p className="mt-6 text-sm text-functional-clinical">Loading…</p>
       ) : (
         <div className="mt-6 space-y-6">
           {/* Tier & Benefits */}
-          <div className="rounded-md border border-gray-200 bg-gray-50 p-4">
-            <h3 className="text-sm font-medium text-gray-700">Member status</h3>
+          <div className="rounded-card border border-neutral-300 bg-neutral-100 p-4">
+            <h3 className="text-sm font-medium text-functional-clinical">Member status</h3>
             <p className="mt-2 font-medium">{status?.tier_name ?? 'Standard'}</p>
             {benefits.length > 0 && (
-              <ul className="mt-2 space-y-1 text-sm text-gray-600">
+              <ul className="mt-2 space-y-1 text-sm text-functional-clinical">
                 {benefits.map((b, i) => (
                   <li key={i}>
                     {b.type === 'discount_percent' && (
@@ -72,10 +72,10 @@ export function Membership() {
           </div>
 
           {/* Balance */}
-          <div className="rounded-md border border-gray-200 bg-gray-50 p-4">
-            <h3 className="text-sm font-medium text-gray-700">Balance</h3>
+          <div className="rounded-card border border-neutral-300 bg-neutral-100 p-4">
+            <h3 className="text-sm font-medium text-functional-clinical">Balance</h3>
             <p className="mt-2 text-lg font-medium">¥{(balance / 100).toFixed(2)}</p>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-functional-clinical">
               Use your balance when booking to pay for appointments.
             </p>
 
@@ -87,12 +87,12 @@ export function Membership() {
                 placeholder="Amount (e.g. 100)"
                 value={topUpAmount}
                 onChange={(e) => setTopUpAmount(e.target.value)}
-                className="block w-32 rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="block w-32 rounded-card border border-neutral-400 px-3 py-2 text-sm shadow-sm focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
               />
               <button
                 type="submit"
                 disabled={topUpMutation.isPending || !topUpAmount}
-                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+                className="rounded-pill bg-accent-gold-dark px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
               >
                 {topUpMutation.isPending ? 'Processing…' : 'Top up'}
               </button>

@@ -1,0 +1,33 @@
+{
+  "patterns": [
+    { "specId": "TreatmentCard", "componentPath": "src/components/TreatmentCard.tsx" },
+    { "specId": "FloatingPriceCard", "componentPath": "src/components/FloatingPriceCard.tsx" },
+    { "specId": "CTAButton", "componentPath": "src/components/CTAButton.tsx" },
+    { "specId": "BeforeAfterSlider", "componentPath": "src/components/BeforeAfterSlider.tsx" },
+    { "specId": "DoctorCard", "componentPath": "src/components/DoctorCard.tsx" },
+    { "specId": "PriceDisplay", "componentPath": "src/components/PriceDisplay.tsx" },
+    { "specId": "BookingCTA", "componentPath": "src/components/BookingCTA.tsx" }
+  ],
+  "tokens": [
+    { "tokenId": "surface-pearl", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "accent-gold", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "accent-gold-dark", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "functional-clinical", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "neutral-100", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "neutral-200", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "neutral-300", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "neutral-400", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "neutral-500", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "status-label", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "radius-card", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "radius-pill", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "shadow-mist", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "section-padding", "definedIn": "src/theme/tokens.css" },
+    { "tokenId": "special-gap", "definedIn": "src/theme/tokens.css" }
+  ],
+  "unmappedSpecs": [],
+  "unmappedComponents": [
+    "src/components/Layout.tsx",
+    "src/components/ProtectedRoute.tsx"
+  ]
+}

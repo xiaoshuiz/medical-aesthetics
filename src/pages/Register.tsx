@@ -35,10 +35,10 @@ export function Register() {
 
   return (
     <div className="mx-auto max-w-sm">
-      <h2 className="text-xl font-medium text-gray-800">Register</h2>
+      <h2 className="text-xl font-medium text-functional-clinical font-serif" style={{ letterSpacing: 'var(--heading-letter-spacing)' }}>Register</h2>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4">
         <div>
-          <label htmlFor="reg-identifier" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="reg-identifier" className="block text-sm font-medium text-functional-clinical">
             Email or phone
           </label>
           <input
@@ -47,11 +47,11 @@ export function Register() {
             autoComplete="username"
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
           />
         </div>
         <div>
-          <label htmlFor="reg-displayName" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="reg-displayName" className="block text-sm font-medium text-functional-clinical">
             Display name
           </label>
           <input
@@ -60,11 +60,11 @@ export function Register() {
             autoComplete="name"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
           />
         </div>
         <div>
-          <label htmlFor="reg-password" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="reg-password" className="block text-sm font-medium text-functional-clinical">
             Password (min 6 characters)
           </label>
           <input
@@ -73,25 +73,25 @@ export function Register() {
             autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
           />
         </div>
         {error && (
-          <p className="text-sm text-red-600" role="alert">
+          <p className="text-sm text-functional-clinical" role="alert">
             {error}
           </p>
         )}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+          className="w-full rounded-pill bg-accent-gold-dark px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
         >
           {loading ? 'Creating account…' : 'Create account'}
         </button>
       </form>
-      <p className="mt-4 text-sm text-gray-600">
+      <p className="mt-4 text-sm text-functional-clinical" style={{ letterSpacing: 'var(--body-letter-spacing)', lineHeight: 'var(--body-line-height)' }}>
         Already have an account?{' '}
-        <Link to="/login" className="text-blue-600 hover:underline">
+        <Link to="/login" className="text-accent-gold-dark hover:underline">
           Log in
         </Link>
       </p>

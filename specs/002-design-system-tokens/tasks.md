@@ -25,9 +25,9 @@
 
 **Purpose**: Design-system structure and token foundation
 
-- [ ] T001 Create design token directory and base structure: src/theme/tokens.css (or extend tailwind.config.js) for kebab-case CSS variables
-- [ ] T002 [P] Add theme entry in app: ensure src/theme/tokens.css (or equivalent) is imported in src/index.css or src/App.tsx
-- [ ] T003 [P] Define mobile viewport breakpoint constant (e.g. in src/theme/breakpoints.ts or tailwind theme) for Booking CTA fixed-bottom
+- [x] T001 Create design token directory and base structure: src/theme/tokens.css (or extend tailwind.config.js) for kebab-case CSS variables
+- [x] T002 [P] Add theme entry in app: ensure src/theme/tokens.css (or equivalent) is imported in src/index.css or src/App.tsx
+- [x] T003 [P] Define mobile viewport breakpoint constant (e.g. in src/theme/breakpoints.ts or tailwind theme) for Booking CTA fixed-bottom
 
 ---
 
@@ -37,12 +37,12 @@
 
 **⚠️ CRITICAL**: No user story implementation can begin until this phase is complete
 
-- [ ] T004 Define Glass & Skin color tokens in src/theme/tokens.css (or tailwind theme): surface-pearl #FAF9F6, accent-gold #C5A059, functional-clinical #005A70; kebab-case names
-- [ ] T005 [P] Define Nude palette @neutral-100 through @neutral-500 in src/theme/tokens.css (or tailwind theme) for section backgrounds
-- [ ] T006 Implement contrast check and darker-variant for accent-gold: add utility or token in src/theme/ (e.g. contrast.ts or second token accent-gold-dark) so 3:1 on surface-pearl is satisfied when default fails
-- [ ] T007 [P] Define typography tokens: Serif H1/H2 (letter-spacing -0.01em), Sans-serif Body (letter-spacing 0.03em, line-height 1.6), @status-label (Uppercase, 10px, Bold, 2px letter-spacing) in src/theme/tokens.css or tailwind.config.js
-- [ ] T008 [P] Define radius and elevation tokens: 24px treatment card, 50px CTA pill, Mist Shadow 0 12px 40px rgba(0,0,0,0.04) in src/theme/tokens.css or tailwind.config.js
-- [ ] T009 Define spacing and section padding: 8pt grid vars, section padding clamp(64px, 10vw, 120px), Special-Gap 48px (CTA-to-Image) in src/theme/tokens.css or tailwind.config.js
+- [x] T004 Define Glass & Skin color tokens in src/theme/tokens.css (or tailwind theme): surface-pearl #FAF9F6, accent-gold #C5A059, functional-clinical #005A70; kebab-case names
+- [x] T005 [P] Define Nude palette @neutral-100 through @neutral-500 in src/theme/tokens.css (or tailwind theme) for section backgrounds
+- [x] T006 Implement contrast check and darker-variant for accent-gold: add utility or token in src/theme/ (e.g. contrast.ts or second token accent-gold-dark) so 3:1 on surface-pearl is satisfied when default fails
+- [x] T007 [P] Define typography tokens: Serif H1/H2 (letter-spacing -0.01em), Sans-serif Body (letter-spacing 0.03em, line-height 1.6), @status-label (Uppercase, 10px, Bold, 2px letter-spacing) in src/theme/tokens.css or tailwind.config.js
+- [x] T008 [P] Define radius and elevation tokens: 24px treatment card, 50px CTA pill, Mist Shadow 0 12px 40px rgba(0,0,0,0.04) in src/theme/tokens.css or tailwind.config.js
+- [x] T009 Define spacing and section padding: 8pt grid vars, section padding clamp(64px, 10vw, 120px), Special-Gap 48px (CTA-to-Image) in src/theme/tokens.css or tailwind.config.js
 
 **Checkpoint**: Token set available; components can consume theme
 
@@ -56,10 +56,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Apply surface-pearl and accent-gold (with darker-variant fallback) to at least one sample screen in src/pages/ or src/App.tsx so tokens are in use
-- [ ] T011 [US1] Ensure all typography tokens (H1/H2 Serif, Body Sans-serif, status-label) are applied via theme in src/theme/ or Tailwind; document usage in src/theme/README.md or inline
-- [ ] T012 [US1] Add section padding token (clamp(64px, 10vw, 120px)) to main layout or section wrapper in src/components/Layout.tsx (or equivalent)
-- [ ] T013 [US1] Verify and document allowed background-to-text pairings and contrast (WCAG AA 4.5:1, UI 3:1) in specs/002-design-system-tokens/docs/contrast-matrix.md or checklist
+- [x] T010 [US1] Apply surface-pearl and accent-gold (with darker-variant fallback) to at least one sample screen in src/pages/ or src/App.tsx so tokens are in use
+- [x] T011 [US1] Ensure all typography tokens (H1/H2 Serif, Body Sans-serif, status-label) are applied via theme in src/theme/ or Tailwind; document usage in src/theme/README.md or inline
+- [x] T012 [US1] Add section padding token (clamp(64px, 10vw, 120px)) to main layout or section wrapper in src/components/Layout.tsx (or equivalent)
+- [x] T013 [US1] Verify and document allowed background-to-text pairings and contrast (WCAG AA 4.5:1, UI 3:1) in specs/002-design-system-tokens/docs/contrast-matrix.md or checklist
 
 **Checkpoint**: User Story 1 deliverable: token set applied and contrast verified
 
@@ -73,15 +73,15 @@
 
 ### Implementation for User Story 2
 
-- [ ] T014 [P] [US2] Create or update TreatmentCard component: 24px radius, 8pt grid margins in src/components/TreatmentCard.tsx (or design-system subfolder)
-- [ ] T015 [P] [US2] Create or update FloatingPriceCard component: Mist Shadow elevation, 24px radius if card surface in src/components/FloatingPriceCard.tsx
-- [ ] T016 [P] [US2] Create or update primary CTA button component: 50px (pill) radius in src/components/Button.tsx or src/components/CTAButton.tsx
-- [ ] T017 [US2] Create or update BeforeAfterSlider component: 4:5 or 1:1 aspect ratio, @status-label for Before/After labels, glassmorphism backdrop (blur 12px, border 1px solid rgba(255,255,255,0.3)), 2px #FFFFFF vertical handle in src/components/BeforeAfterSlider.tsx
-- [ ] T018 [P] [US2] Create or update DoctorCard component: flex column 16px gap, qualification badge 32px height, Title 2 typographic units smaller than Name with 200% font-weight in src/components/DoctorCard.tsx
-- [ ] T019 [P] [US2] Create or update PriceDisplay component: @currency at 0.7× amount font-size in src/components/PriceDisplay.tsx
-- [ ] T020 [US2] Create or update BookingCTA component: fixed to bottom on mobile viewport (use breakpoint from T003) in src/components/BookingCTA.tsx
-- [ ] T021 [US2] Ensure all Card-Overlay usages (including Before/After labels) use glassmorphism spec in src/components/ (backdrop-filter blur(12px), border 1px solid rgba(255,255,255,0.3))
-- [ ] T022 [US2] Snap component margins to 8pt grid; use 48px Special-Gap only for CTA-to-Image in relevant components
+- [x] T014 [P] [US2] Create or update TreatmentCard component: 24px radius, 8pt grid margins in src/components/TreatmentCard.tsx (or design-system subfolder)
+- [x] T015 [P] [US2] Create or update FloatingPriceCard component: Mist Shadow elevation, 24px radius if card surface in src/components/FloatingPriceCard.tsx
+- [x] T016 [P] [US2] Create or update primary CTA button component: 50px (pill) radius in src/components/Button.tsx or src/components/CTAButton.tsx
+- [x] T017 [US2] Create or update BeforeAfterSlider component: 4:5 or 1:1 aspect ratio, @status-label for Before/After labels, glassmorphism backdrop (blur 12px, border 1px solid rgba(255,255,255,0.3)), 2px #FFFFFF vertical handle in src/components/BeforeAfterSlider.tsx
+- [x] T018 [P] [US2] Create or update DoctorCard component: flex column 16px gap, qualification badge 32px height, Title 2 typographic units smaller than Name with 200% font-weight in src/components/DoctorCard.tsx
+- [x] T019 [P] [US2] Create or update PriceDisplay component: @currency at 0.7× amount font-size in src/components/PriceDisplay.tsx
+- [x] T020 [US2] Create or update BookingCTA component: fixed to bottom on mobile viewport (use breakpoint from T003) in src/components/BookingCTA.tsx
+- [x] T021 [US2] Ensure all Card-Overlay usages (including Before/After labels) use glassmorphism spec in src/components/ (backdrop-filter blur(12px), border 1px solid rgba(255,255,255,0.3))
+- [x] T022 [US2] Snap component margins to 8pt grid; use 48px Special-Gap only for CTA-to-Image in relevant components
 
 **Checkpoint**: User Story 2 deliverable: all component types match spec and are independently verifiable
 
@@ -95,9 +95,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T023 [US3] Create component-manifest.json per contracts/component-manifest.schema.json mapping design specs (tokens + component patterns) to React components in specs/002-design-system-tokens/component-manifest.json
-- [ ] T024 [US3] Add script or process to list unmapped components and unmapped specs (manifest unmappedSpecs/unmappedComponents or script in scripts/) per specs/002-design-system-tokens/contracts/README.md
-- [ ] T025 [US3] Create Style Audit report (script or doc): scan src/ for spacing values not on 8pt grid, treat 48px for CTA-to-Image as compliant; output file/component and value in specs/002-design-system-tokens/style-audit-report.md or scripts/output
+- [x] T023 [US3] Create component-manifest.json per contracts/component-manifest.schema.json mapping design specs (tokens + component patterns) to React components in specs/002-design-system-tokens/component-manifest.json
+- [x] T024 [US3] Add script or process to list unmapped components and unmapped specs (manifest unmappedSpecs/unmappedComponents or script in scripts/) per specs/002-design-system-tokens/contracts/README.md
+- [x] T025 [US3] Create Style Audit report (script or doc): scan src/ for spacing values not on 8pt grid, treat 48px for CTA-to-Image as compliant; output file/component and value in specs/002-design-system-tokens/style-audit-report.md or scripts/output
 
 **Checkpoint**: User Story 3 deliverable: manifest and style audit available and actionable
 
@@ -107,10 +107,10 @@
 
 **Purpose**: Documentation, consistency, and validation
 
-- [ ] T026 [P] Update design system usage docs: token list, component list, and link to spec in specs/002-design-system-tokens/README.md or docs/design-system.md
-- [ ] T027 Replace any hardcoded hex for surface, accent, or functional clinical color in src/ with theme tokens (SC-001)
-- [ ] T028 [P] Run implementation-verification checklist and fix gaps: specs/002-design-system-tokens/checklists/implementation-verification.md
-- [ ] T029 Define typographic scale (e.g. in src/theme/typography.ts or tailwind theme) so “2 typographic units smaller” for Doctor-Card Title is unambiguous
+- [x] T026 [P] Update design system usage docs: token list, component list, and link to spec in specs/002-design-system-tokens/README.md or docs/design-system.md
+- [x] T027 Replace any hardcoded hex for surface, accent, or functional clinical color in src/ with theme tokens (SC-001)
+- [x] T028 [P] Run implementation-verification checklist and fix gaps: specs/002-design-system-tokens/checklists/implementation-verification.md
+- [x] T029 Define typographic scale (e.g. in src/theme/typography.ts or tailwind theme) so “2 typographic units smaller” for Doctor-Card Title is unambiguous
 
 ---
 

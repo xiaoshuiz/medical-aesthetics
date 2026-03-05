@@ -95,12 +95,12 @@ export function Profile() {
   const avatarFallback = (displayName.trim()[0] ?? 'U').toUpperCase();
 
   return (
-    <div className="mx-auto max-w-xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-medium text-gray-800">My Profile</h2>
-      <p className="mt-2 text-sm text-gray-600">Update your display name, contact, and avatar.</p>
+    <div className="mx-auto max-w-xl rounded-card border border-neutral-300 bg-surface-pearl p-6 shadow-mist">
+      <h2 className="text-xl font-medium text-functional-clinical">My Profile</h2>
+      <p className="mt-2 text-sm text-functional-clinical">Update your display name, contact, and avatar.</p>
 
       {loading ? (
-        <p className="mt-6 text-sm text-gray-600">Loading profile…</p>
+        <p className="mt-6 text-sm text-functional-clinical">Loading profile…</p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div className="flex items-center gap-4">
@@ -108,14 +108,14 @@ export function Profile() {
               <img
                 src={avatarPreview}
                 alt="Avatar preview"
-                className="h-16 w-16 rounded-full border border-gray-200 object-cover"
+                className="h-16 w-16 rounded-full border border-neutral-300 object-cover"
               />
             ) : (
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gray-200 bg-gray-100 text-lg font-semibold text-gray-600">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-neutral-300 bg-neutral-200 text-lg font-semibold text-functional-clinical">
                 {avatarFallback}
               </div>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               {hasAvatarPreview
                 ? 'This is how your avatar will appear.'
                 : 'Enter an avatar URL to preview your profile image.'}
@@ -123,7 +123,7 @@ export function Profile() {
           </div>
 
           <div>
-            <label htmlFor="profile-display-name" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="profile-display-name" className="block text-sm font-medium text-functional-clinical">
               Display name
             </label>
             <input
@@ -131,7 +131,7 @@ export function Profile() {
               type="text"
               value={displayName}
               onChange={(event) => setDisplayName(event.target.value)}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
             />
             {formErrors.displayName && (
               <p className="mt-1 text-sm text-red-600" role="alert">
@@ -141,7 +141,7 @@ export function Profile() {
           </div>
 
           <div>
-            <label htmlFor="profile-contact" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="profile-contact" className="block text-sm font-medium text-functional-clinical">
               Contact
             </label>
             <input
@@ -149,7 +149,7 @@ export function Profile() {
               type="text"
               value={contact}
               onChange={(event) => setContact(event.target.value)}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
             />
             {formErrors.contact && (
               <p className="mt-1 text-sm text-red-600" role="alert">
@@ -159,7 +159,7 @@ export function Profile() {
           </div>
 
           <div>
-            <label htmlFor="profile-avatar-url" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="profile-avatar-url" className="block text-sm font-medium text-functional-clinical">
               Avatar URL (optional)
             </label>
             <input
@@ -168,7 +168,7 @@ export function Profile() {
               value={avatarUrl}
               onChange={(event) => setAvatarUrl(event.target.value)}
               placeholder="https://example.com/avatar.png"
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-card border border-neutral-400 px-3 py-2 shadow-mist focus:border-accent-gold focus:outline-none focus:ring-1 focus:ring-accent-gold"
             />
             {formErrors.avatarUrl && (
               <p className="mt-1 text-sm text-red-600" role="alert">
@@ -191,7 +191,7 @@ export function Profile() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-pill bg-accent-gold-dark px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
           >
             {saving ? 'Saving…' : 'Save profile'}
           </button>
