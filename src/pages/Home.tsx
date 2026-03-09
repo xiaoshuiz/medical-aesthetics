@@ -1,39 +1,98 @@
-import { Link } from 'react-router-dom';
+// src/pages/Home.tsx
+// Homepage redesign (003-homepage-redesign)
+
+import { motion } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
+import { fadeUpVariant } from '../lib/animation-variants';
+import {
+  HERO_CONTENT,
+  STAT_METRICS,
+  TREATMENT_ENTRIES,
+  PRACTITIONERS,
+  TESTIMONIALS,
+  QUICK_ACTIONS,
+} from '../data/homepage-mock';
+
+// Phase 3 — US1
+import HeroSection from '../components/homepage/HeroSection';
+
+// Phase 4 — US2
+import TreatmentShowcase from '../components/homepage/TreatmentShowcase';
+
+// Phase 5 — US3
+import StatsStrip from '../components/homepage/StatsStrip';
+import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+import DoctorSection from '../components/homepage/DoctorSection';
+import TestimonialsSection from '../components/homepage/TestimonialsSection';
+
+// Phase 6 — US4
+import FinalCTASection from '../components/homepage/FinalCTASection';
 
 export function Home() {
   const { user } = useAuth();
+  const isAuthenticated = user !== null;
+  const userName = user?.display_name;
+
 
   return (
-    <div className="mx-auto max-w-xl">
-      <h2 className="text-xl font-medium text-functional-clinical font-serif" style={{ letterSpacing: 'var(--heading-letter-spacing)' }}>Welcome</h2>
-      <p className="mt-2 text-functional-clinical" style={{ letterSpacing: 'var(--body-letter-spacing)', lineHeight: 'var(--body-line-height)' }}>
-        {user
-          ? `Welcome, ${user.display_name}. Book appointments, manage your profile, and view your membership.`
-          : 'Sign in or register to book appointments and manage your profile.'}
-      </p>
-      {user && (
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            to="/booking"
-            className="rounded-pill bg-accent-gold-dark px-4 py-2 text-sm font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-offset-2"
+    <div className="min-h-screen bg-surface-pearl">
+      {/* US1: Hero */}
+      <HeroSection
+        content={HERO_CONTENT}
+        isAuthenticated={isAuthenticated}
+        userName={userName}
+        quickActions={QUICK_ACTIONS}
+      />
+
+      {/* US2: Treatment Showcase */}
+      <TreatmentShowcase treatments={TREATMENT_ENTRIES} />
+
+      {/* US3: Stats Strip */}
+      <StatsStrip metrics={STAT_METRICS} />
+
+      {/* US3: Before / After Slider */}
+      <section aria-label="Before and After" style={{ padding: 'var(--section-padding) 1.5rem' }}>
+        <div className="mx-auto max-w-2xl">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUpVariant}
+            viewport={{ once: true }}
+            className="mb-10 text-center font-display text-functional-clinical"
+            style={{
+              fontSize: 'var(--h2-font-size)',
+              lineHeight: 'var(--heading-line-height)',
+              letterSpacing: 'var(--heading-letter-spacing)',
+            }}
           >
-            Book appointment
-          </Link>
-          <Link
-            to="/profile"
-            className="rounded-card border border-neutral-400 px-4 py-2 text-sm font-medium text-functional-clinical hover:bg-neutral-200"
+            Real Results
+          </motion.h2>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUpVariant}
+            viewport={{ once: true }}
           >
-            My profile
-          </Link>
-          <Link
-            to="/history"
-            className="rounded-card border border-neutral-400 px-4 py-2 text-sm font-medium text-functional-clinical hover:bg-neutral-200"
-          >
-            History
-          </Link>
+            <BeforeAfterSlider
+              beforeImage="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80"
+              afterImage="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80"
+            />
+          </motion.div>
         </div>
-      )}
+      </section>
+
+      {/* US3: Doctor Profiles */}
+      <DoctorSection practitioners={PRACTITIONERS} />
+
+      {/* US3: Patient Testimonials */}
+      <TestimonialsSection testimonials={TESTIMONIALS} />
+
+      {/* US4: Final CTA */}
+      <FinalCTASection
+        isAuthenticated={isAuthenticated}
+        guestCta={HERO_CONTENT.guestCta}
+        authCta={HERO_CONTENT.authCta}
+      />
     </div>
   );
 }
