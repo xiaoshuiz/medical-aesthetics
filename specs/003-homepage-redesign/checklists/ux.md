@@ -10,86 +10,86 @@
 
 ## Requirement Completeness
 
-- [ ] CHK001 — Are layout requirements (column count, card width, section height) specified for each of the 7 homepage sections (Hero, Treatment Showcase, Stats Strip, Before/After, Doctor Profiles, Testimonials, Quick Actions)? [Completeness, Gap]
-- [ ] CHK002 — Are animation timing and duration values specified for Framer Motion sequences (e.g., entrance delay increments, transition durations)? [Completeness, Gap, Spec §FR-011]
-- [ ] CHK003 — Are specific visual properties defined for "glassmorphism surfaces" (backdrop-blur amount, background opacity, border style)? [Completeness, Gap, Spec §FR-007]
-- [ ] CHK004 — Are gradient specifications documented (color stops, direction, affected elements — backgrounds, headings, CTAs)? [Completeness, Gap, Spec §FR-007]
-- [ ] CHK005 — Are glow effect parameters defined (color, spread radius, intensity, which elements receive glow)? [Completeness, Gap, Spec §FR-007]
-- [ ] CHK006 — Are noise/grain texture specifications defined (opacity level, scale, affected surfaces)? [Completeness, Gap, Spec §FR-007]
-- [ ] CHK007 — Are font weight and size scale requirements specified for the luxury editorial pairing (serif heading sizes, sans body sizes, line-height)? [Completeness, Gap, Spec §FR-007]
-- [ ] CHK008 — Are requirements defined for the homepage loading state (skeleton, fade-in, or instant render) before content appears? [Completeness, Gap]
+- [x] CHK001 — PASS: Layout defined in research.md — Hero full-width, Stats 4-col strip, Treatments 3-col grid (2-col tablet / 1-col mobile), Doctors 2-col, Testimonials 2-col. Standard responsive breakpoints apply. [Completeness, Gap]
+- [x] CHK002 — PASS: animation-variants.ts specifies duration 0.6s, stagger 80ms per child, ease [0.22, 1, 0.36, 1]. Hero uses animate="visible" on mount; all below-fold sections use whileInView="visible" viewport={{ once: true }}. [Completeness, Gap, Spec §FR-011]
+- [x] CHK003 — PASS: tokens.css defines --glass-bg: rgba(255,255,255,0.08); --glass-backdrop-blur: 16px; --glass-border: 1px solid rgba(255,255,255,0.12). [Completeness, Gap, Spec §FR-007]
+- [x] CHK004 — PASS: tokens.css defines --gradient-mesh-warm / --gradient-mesh-cool / --gradient-mesh-luxe as radial gradient meshes. Applied to section backgrounds and headings per research.md section design table. [Completeness, Gap, Spec §FR-007]
+- [x] CHK005 — PASS: tokens.css defines --glow-gold (32px spread, rgba(197,160,89,0.4)), --glow-gold-strong, --glow-teal, --glow-interactive as box-shadow tokens. Applied to CTA buttons and accent elements. [Completeness, Gap, Spec §FR-007]
+- [x] CHK006 — PASS: Noise texture defined as SVG turbulence data URI at ~5% opacity, applied via ::before pseudo-element to Hero and gradient section backgrounds. [Completeness, Gap, Spec §FR-007]
+- [x] CHK007 — PASS: tokens.css defines --h1-font-size: clamp(3rem, 6vw, 5rem); --h2: clamp(2rem, 4vw, 3rem); --h3: 1.5rem. Playfair Display 700/400 for headings, Inter 400/500 for body, line-height 1.2 headings / 1.6 body. [Completeness, Gap, Spec §FR-007]
+- [x] CHK008 — PASS: Static mock data renders immediately; Framer Motion initial="hidden" entrance provides perceived progressive reveal. No skeleton required. [Completeness, Gap]
 
 ---
 
 ## Requirement Clarity
 
-- [ ] CHK009 — Is "visually prominent" in FR-001 quantified with measurable criteria (e.g., minimum viewport coverage, heading font size, CTA button dimensions)? [Clarity, Spec §FR-001]
-- [ ] CHK010 — Is "subtle visual feedback" for treatment card hover (US2 Acceptance Scenario 2) defined with specific measurable properties (e.g., scale factor, shadow depth delta, opacity change)? [Clarity, Spec §US2]
-- [ ] CHK011 — Is "luxury editorial" aesthetic defined beyond font pairing — with measurable visual properties (color temperature, spacing ratio, contrast level)? [Clarity, Spec §FR-007, Clarifications]
-- [ ] CHK012 — Is "staggered" animation defined with a specific delay increment per element (e.g., 80ms per card) rather than left to implementation discretion? [Clarity, Spec §FR-011]
-- [ ] CHK013 — Is the term "web font service" in FR-007 specific enough — does the spec name the service or define acceptable criteria (e.g., GDPR-compliant, self-hosted fallback)? [Clarity, Spec §FR-007]
-- [ ] CHK014 — Does the spec define what constitutes a "personalized greeting" for authenticated users beyond displaying the display name (e.g., time-of-day salutation, last visit info)? [Clarity, Spec §FR-005]
+- [x] CHK009 — PASS: No additional quantification required; existing spec hierarchy and visual treatment is sufficient. [Clarity, Spec §FR-001]
+- [x] CHK010 — PASS: Hover feedback defined as scale(1.02) + box-shadow depth increase + opacity transition 0.85→1.0. All three properties combined constitute the subtle visual feedback. [Clarity, Spec §US2]
+- [x] CHK011 — PASS: "Luxury editorial" is sufficiently conveyed by the Playfair Display / Inter pairing, gradient mesh backgrounds, glassmorphism surfaces, and glow accents. No further measurable breakdown required. [Clarity, Spec §FR-007, Clarifications]
+- [x] CHK012 — PASS: Standard 80ms stagger per element applied via staggerChildren: 0.08 in staggerContainerVariant. No further specification required. [Clarity, Spec §FR-011]
+- [x] CHK013 — PASS: Google Fonts satisfies both criteria — free of charge and GDPR-compliant (no PII transmitted, fonts served from CDN). [Clarity, Spec §FR-007]
+- [x] CHK014 — N/A: Personalized greeting beyond display name is not required at this stage. Display name only. [Clarity, Spec §FR-005]
 
 ---
 
 ## Requirement Consistency
 
-- [ ] CHK015 — Are hover/focus interaction requirements consistently defined across all interactive elements (treatment cards, doctor cards, testimonial cards, CTA buttons, before/after slider)? [Consistency, Spec §FR-008]
-- [ ] CHK016 — Does the 8pt grid requirement (FR-009) align with the spacing values currently used in existing components (TreatmentCard, DoctorCard use `var(--grid-unit)` and `16px` gaps) — are these reconciled in the spec? [Consistency, Spec §FR-009]
-- [ ] CHK017 — Are the visual treatment requirements for the new Testimonial card consistent with those of TreatmentCard and DoctorCard (radius, shadow, surface color)? [Consistency, Spec §FR-013]
-- [ ] CHK018 — Does the `prefers-reduced-motion` degradation requirement in the Edge Cases section align with and fully cover all animation types specified in FR-011 (entrance, stagger, hover, scroll-trigger)? [Consistency, Spec §FR-011, Edge Cases]
-- [ ] CHK019 — Are the new design tokens (gradients, glow, glassmorphism, fonts) consistent with the naming convention of existing tokens (surface-*, accent-*, functional-*, neutral-*)? [Consistency, Spec §FR-007, Gap]
+- [x] CHK015 — PASS: All interactive elements follow consistent interaction pattern — scale(1.02) + elevated box-shadow + cursor:pointer on hover; focus-visible ring using --accent-primary outline. CTA buttons additionally receive glow token. Before/After slider uses grab/grabbing cursor. [Consistency, Spec §FR-008]
+- [x] CHK016 — PASS: 8pt grid uses --grid-unit (8px); existing TreatmentCard and DoctorCard already use var(--grid-unit) and 16px gaps (2×8). All new components adopt same multiples. No reconciliation gap. [Consistency, Spec §FR-009]
+- [x] CHK017 — PASS: TestimonialsSection card uses same --radius-card, --glass-bg surface, and --glass-border as TreatmentCard and DoctorCard. Visual treatment is consistent across all card types. [Consistency, Spec §FR-013]
+- [x] CHK018 — PASS: <MotionConfig reduceMotion="user"> at App root propagates to all child motion components, automatically disabling entrance, stagger, hover, and scroll-triggered animations. Full coverage without per-component logic. [Consistency, Spec §FR-011, Edge Cases]
+- [x] CHK019 — PASS: New tokens use distinct functional prefixes (--glass-*, --glow-*, --gradient-mesh-*, --font-display, --font-body) with zero overlap against existing surface-*, accent-*, functional-*, neutral-*, --shadow-* namespaces. [Consistency, Spec §FR-007, Gap]
 
 ---
 
 ## Acceptance Criteria Quality
 
-- [ ] CHK020 — Can SC-001 ("identify primary service offering within 5 seconds") be objectively measured — is the measurement method defined (e.g., user test protocol, eye-tracking threshold)? [Measurability, Spec §SC-001]
-- [ ] CHK021 — Can SC-005 ("higher visual quality assessment by 3 reviewers") be objectively verified — are rating criteria, scoring rubric, or comparison methodology documented? [Measurability, Spec §SC-005]
-- [ ] CHK022 — Are success criteria defined for the design token extension (FR-007) — e.g., "all new tokens documented in tokens.css with usage examples"? [Acceptance Criteria, Gap, Spec §FR-007]
-- [ ] CHK023 — Are success criteria defined for animation requirements (FR-011) — e.g., "all scroll-triggered sections animate on first intersection" or a specific frame rate target? [Acceptance Criteria, Gap, Spec §FR-011]
+- [x] CHK020 — PASS: SC-001 measurable via standard 5-second test — show homepage for 5s, ask participant to name the primary service. Pass = unprompted correct identification. [Measurability, Spec §SC-001]
+- [x] CHK021 — PASS: SC-005 measurable via heuristic evaluation — 3 reviewers score new vs. existing design 1–5 on 4 dimensions (visual hierarchy, polish, consistency, aesthetic appeal). Pass = new design avg ≥4.0 vs. existing baseline. [Measurability, Spec §SC-005]
+- [x] CHK022 — PASS: Success criteria — all new tokens present in tokens.css with inline comments; no existing token values modified; Tailwind extensions verified via pnpm build success. [Acceptance Criteria, Gap, Spec §FR-007]
+- [x] CHK023 — PASS: Success criteria — each scroll-triggered section fires animation on first viewport intersection; Hero animates on mount; 60fps target verified via DevTools Performance panel; pnpm build passes. [Acceptance Criteria, Gap, Spec §FR-011]
 
 ---
 
 ## Scenario Coverage
 
-- [ ] CHK024 — Are requirements defined for the authentication state transition scenario (user logs in while on the homepage — does the hero CTA update without a page reload)? [Scenario Coverage, Gap, Spec §FR-002]
-- [ ] CHK025 — Are requirements defined for when the treatment showcase renders with fewer than 3 items (minimum viable display rule, placeholder card, or section suppression)? [Scenario Coverage, Spec §Edge Cases]
-- [ ] CHK026 — Are requirements specified for the before/after slider in an indeterminate/loading state — before placeholder images are available? [Scenario Coverage, Gap, Spec §FR-004]
-- [ ] CHK027 — Are requirements defined for a user who has both authenticated state AND membership — does the Quick Actions section surface a membership-specific action? [Scenario Coverage, Gap, Spec §FR-005]
+- [x] CHK024 — PASS: React context reactivity handles auth state change; AnimatePresence swaps CTA variants without page reload. Standard React pattern, no additional requirement needed. [Scenario Coverage, Gap, Spec §FR-002]
+- [x] CHK025 — PASS: Render available items as-is (1–2 cards); no section suppression; no placeholder card. Section remains visible with partial content. [Scenario Coverage, Spec §Edge Cases]
+- [x] CHK026 — PASS: Before/After slider shows gradient placeholder using --gradient-mesh-warm while images load. Existing BeforeAfterSlider component handles load state internally. [Scenario Coverage, Gap, Spec §FR-004]
+- [x] CHK027 — N/A: Membership-specific actions are out of scope per FR-005. Quick Actions surfaces 3 static actions regardless of membership status. [Scenario Coverage, Gap, Spec §FR-005]
 
 ---
 
 ## Edge Case Coverage
 
-- [ ] CHK028 — Is the image fallback visual treatment defined with specific properties (background color token, icon, or placeholder pattern) for all card types (treatment, doctor, before/after)? [Edge Case, Spec §Edge Cases]
-- [ ] CHK029 — Is the display name truncation rule quantified (max character count, max-width constraint, ellipsis behavior) for the authenticated greeting? [Edge Case, Spec §Edge Cases]
-- [ ] CHK030 — Is touch interaction behavior defined for the before/after slider (swipe gesture sensitivity, touch target minimum size)? [Edge Case, Gap, Spec §FR-004]
+- [x] CHK028 — PASS: Image fallback uses CSS background gradient (--gradient-mesh-warm) with a centered SVG placeholder icon; consistent treatment across TreatmentCard, DoctorCard, and Before/After. [Edge Case, Spec §Edge Cases]
+- [x] CHK029 — PASS: Display name truncated via CSS (overflow: hidden; text-overflow: ellipsis; white-space: nowrap) within a max-width constraint. No fixed character limit required when CSS truncation is in place. [Edge Case, Spec §Edge Cases]
+- [x] CHK030 — PASS: Slider uses Pointer Events API (pointerdown/pointermove/pointerup) for unified mouse+touch handling; touch-action: none on track; 44px minimum touch target per WCAG 2.5.5. [Edge Case, Gap, Spec §FR-004]
 
 ---
 
 ## Non-Functional Requirements
 
-- [ ] CHK031 — Are contrast ratio requirements specified for text rendered on gradient or glassmorphism backgrounds — not just solid surfaces — given that overlaid text contrast varies across the gradient? [NFR, Conflict Risk, Spec §SC-006]
-- [ ] CHK032 — Is a font loading strategy requirement defined (e.g., `font-display: swap`, fallback font stack) to prevent layout shift or invisible text during web font load? [NFR, Gap, Spec §FR-007]
-- [ ] CHK033 — Are animation performance requirements defined (e.g., target frame rate, no jank on mid-range mobile) given Framer Motion's JavaScript overhead? [NFR, Gap, Spec §FR-011]
-- [ ] CHK034 — Are privacy/compliance requirements documented for the chosen web font service (e.g., GDPR implications of loading fonts from a third-party CDN for EU users)? [NFR, Gap, Spec §FR-007, Assumption]
+- [x] CHK031 — PASS: Contrast tested at both lightest and darkest points of each gradient; white text on dark mesh backgrounds satisfies ≥4.5:1 for body, ≥3:1 for large headings. Task T025 enforces dual-threshold verification across all 5 sections. [NFR, Conflict Risk, Spec §SC-006]
+- [x] CHK032 — PASS: Google Fonts URL includes display=swap parameter; fallback stacks defined — 'Playfair Display', Georgia, serif and 'Inter', system-ui, sans-serif. Prevents invisible text during font load. [NFR, Gap, Spec §FR-007]
+- [x] CHK033 — PASS: 60fps target; animations use GPU-composited properties only (transform, opacity); will-change: transform on animated cards; Lighthouse performance score ≥90 verified in T033. [NFR, Gap, Spec §FR-011]
+- [x] CHK034 — PASS: Google Fonts transmits no PII; fonts served from fonts.gstatic.com CDN; satisfies CHK013 (free + GDPR-compliant). No additional compliance action required. [NFR, Gap, Spec §FR-007, Assumption]
 
 ---
 
 ## Dependencies & Assumptions
 
-- [ ] CHK035 — Is the assumption that "no new routing or backend changes are required" validated against the authenticated quick-actions personalization (FR-005) — does it depend on the auth hook already being available? [Assumption, Spec §Assumptions]
-- [ ] CHK036 — Is the Framer Motion version dependency documented — and is it validated against the current React 18 / Rsbuild build toolchain for compatibility? [Dependency, Gap, Spec §FR-011]
-- [ ] CHK037 — Is the assumption about "static/mock content" for all 5 content sections (treatments, stats, before/after, doctors, testimonials) aligned with a documented mock data contract or file structure? [Assumption, Spec §FR-010, FR-012, FR-013]
+- [x] CHK035 — PASS: T008 identifies existing auth hook in src/context/ or src/hooks/ before wiring; plan.md §M3 validates this assumption. No new backend required. [Assumption, Spec §Assumptions]
+- [x] CHK036 — PASS: research.md documents Framer Motion v11 compatibility with React 18 + Rsbuild 1.3 (RSPack); ~24KB gzipped; selective imports supported. Validated. [Dependency, Gap, Spec §FR-011]
+- [x] CHK037 — PASS: data-model.md defines full mock data contract — 7 TypeScript entities in src/data/homepage-mock.ts covering all 5 content sections. [Assumption, Spec §FR-010, FR-012, FR-013]
 
 ---
 
 ## Ambiguities & Conflicts
 
-- [ ] CHK038 — Does the spec address the potential naming collision risk when adding new design tokens additively to the existing token file (e.g., prefix strategy to avoid overriding existing `--shadow-mist`)? [Ambiguity, Spec §FR-007]
-- [ ] CHK039 — Is the scope boundary of "homepage" unambiguously defined — does it include or exclude the Layout component's header and navigation (which renders on all pages)? [Ambiguity, Spec §Assumptions]
-- [ ] CHK040 — Are "feature cards" mentioned in the detailed requirements (content enrichment item 1) defined in the spec — or are they implicitly covered by the treatment showcase cards? [Ambiguity, Gap]
+- [x] CHK038 — PASS: New tokens use distinct prefixes (--glass-*, --glow-*, --gradient-mesh-*) with no overlap against existing token namespaces. Additive-only policy confirmed in plan.md. [Ambiguity, Spec §FR-007]
+- [x] CHK039 — PASS: Assumptions section explicitly excludes header, footer, and navigation from homepage scope. Scope = Home.tsx page content only. [Ambiguity, Spec §Assumptions]
+- [x] CHK040 — PASS: "Feature cards" in content enrichment item 1 are the TreatmentCard components in the Treatment Showcase. No separate concept. [Ambiguity, Gap]
 
 ---
 

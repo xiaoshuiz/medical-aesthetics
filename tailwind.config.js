@@ -32,6 +32,33 @@ export default {
       screens: {
         mobile: '768px', /* T003: Booking CTA fixed-bottom breakpoint */
       },
+      backdropBlur: {
+        glass: '16px',
+      },
+      boxShadow: {
+        'glow-gold': 'var(--glow-gold)',
+        'glow-gold-strong': 'var(--glow-gold-strong)',
+        'glow-teal': 'var(--glow-teal)',
+        'glow-interactive': 'var(--glow-interactive)',
+      },
+      backgroundColor: {
+        glass: 'var(--glass-bg)',
+        'glass-dark': 'var(--glass-bg-dark)',
+      },
+      borderColor: {
+        glass: 'var(--glass-border)',
+        'glass-strong': 'var(--glass-border-strong)',
+      },
+      fontFamily: {
+        display: ['var(--font-display)'],
+        body: ['var(--font-body)'],
+      },
+      backgroundImage: {
+        'gradient-mesh-warm': 'var(--gradient-mesh-warm)',
+        'gradient-mesh-cool': 'var(--gradient-mesh-cool)',
+        'gradient-mesh-luxe': 'var(--gradient-mesh-luxe)',
+        'gradient-cta': 'var(--gradient-cta)',
+      },
     },
   },
   plugins: [],
